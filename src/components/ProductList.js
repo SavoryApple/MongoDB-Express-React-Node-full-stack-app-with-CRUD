@@ -8,16 +8,43 @@ import {
 } from "react-router-dom";
 
 const ProductList = (props) => {
-    console.log("PRODUCTS.productList:", props.products.productList)
+
+    const { removeFromDom } = props;
+    const deleteProduct = (productId) => {
+        axios.delete('http://localhost:8000/api/products/' + productId)
+            .then(res => {
+                removeFromDom(productId)
+            })
+            .catch(err => console.error(err));
+    }
+
+    
     return (
-        
-            <div>
-                {props.products.productList.map((product, i) =>
-                    <Link to={`/products/` + product._id}><p key={i}>_ID: {product._id}, Title: {product.title}, Price: {product.price}, Description: {product.description}</p></Link>
-                )}
-            </div>
-        
+        <div>
+            {props.products.map((product, idx) => {
+                return <p key={idx}>
+                    <Link to={"/products/" + product._id}>
+                        {product.title}, {product.price}, {product.description}
+                    </Link>
+                    |
+                    <button onClick={(e) => { deleteProduct(product._id) }}>
+                        Delete
+                    </button>
+                </p>
+            })}
+        </div>
     )
+
 }
 
 export default ProductList;
+
+
+
+
+
+
+
+
+
+

@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Main from './views/Main';
 import Detail from './views/Detail';
+import Update from './views/Update';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route exact path="/products/:id">
           <Detail />
+        </Route>
+        <Route path="/products/:id/edit">
+          <Update />
         </Route>
       </div>
     </BrowserRouter>
