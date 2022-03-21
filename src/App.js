@@ -17,10 +17,10 @@ function App() {
         <Route exact path="/products">
           <Main />
         </Route>
-        <Route exact path="/products/:id">
+        <Route exact path="/product/:id">
           <Detail />
         </Route>
-        <Route path="/products/:id/edit">
+        <Route path="/product/:id/edit">
           <Update />
         </Route>
       </div>
